@@ -1,6 +1,3 @@
-//=====================================================================
-// äÖÈ¾Éè±¸
-//=====================================================================
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #define TINYOBJLOADER_IMPLEMENTATION
@@ -16,7 +13,7 @@
 #include "render.h"
 using namespace std;
 const float PI = 3.14159265359;
-//Éè±¸³õÊ¼»¯£¬fbÎªÍâ²¿Ö¡»º´æ£¬·ÇNULL½«ÒıÓÃÍâ²¿Ö¡»º´æ 
+//ï¿½è±¸ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½fbÎªï¿½â²¿Ö¡ï¿½ï¿½ï¿½æ£¬ï¿½ï¿½NULLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â²¿Ö¡ï¿½ï¿½ï¿½ï¿½ 
 void device_init(device_t* device, int width, int height, void* fb)
 {
 	int need = sizeof(void*) * (height * 2 + 1024) + width * height * 8;
@@ -59,7 +56,7 @@ void device_init(device_t* device, int width, int height, void* fb)
 	//transform_init(&device->transform, width, height);
 	device->render_state = RENDER_STATE_WIREFRAME;
 }
-// É¾³ıÉè±¸
+// É¾ï¿½ï¿½ï¿½è±¸
 void device_destory(device_t* device)
 {
 	if (device->framebuffer)
@@ -68,7 +65,7 @@ void device_destory(device_t* device)
 	device->zbuffer = NULL;
 	device->texture = NULL;
 }
-//ÉèÖÃµ±Ç°ÎÆÀí 
+//ï¿½ï¿½ï¿½Ãµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ 
 void device_set_texture(device_t* device, void* bits, long pitch, int w, int h)
 {
 	char* ptr = (char*)bits;
@@ -303,7 +300,7 @@ void device_set_pointlight(device_t* device, s_vector& pos, s_vector& color, s_v
 	device->pointlight[cnt].specular = spe;
 }
 
-// Çå¿Õ framebuffer ºÍ zbuffer
+// ï¿½ï¿½ï¿½ framebuffer ï¿½ï¿½ zbuffer
 void device_clear(device_t* device, int mode)
 {
 	int y, x, height = device->height;
@@ -331,7 +328,7 @@ void device_pixel(device_t* device, int x, int y, IUINT32 color)
 void device_draw_line(device_t* device, int x1, int y1, int x2, int y2, IUINT32 c)
 {
 	int x, y, rem = 0;
-	if (x1 == x2 && y1 == y2)//Èç¹ûÖ»ÊÇÒ»¸öµãµÄ»° 
+	if (x1 == x2 && y1 == y2)//ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ 
 	{
 		device_pixel(device, x1, y1, c);
 	}
@@ -361,7 +358,7 @@ void device_draw_line(device_t* device, int x1, int y1, int x2, int y2, IUINT32 
 				if (rem >= dx)
 				{
 					rem -= dx;
-					y += (y2 >= y1) ? 1 : -1;//Ä£ºı½Ó½üÕâ¸öÖ±Ïß 
+					y += (y2 >= y1) ? 1 : -1;//Ä£ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ 
 					device_pixel(device, x, y, c);
 				}
 			}
@@ -386,7 +383,7 @@ void device_draw_line(device_t* device, int x1, int y1, int x2, int y2, IUINT32 
 
 	}
 }
-// ¸ù¾İ×ø±ê¶ÁÈ¡ÎÆÀí
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 IUINT32 device_texture_read(const device_t* device, float u, float v)
 {
 	int x, y;
@@ -566,10 +563,10 @@ void ff_interpolating(for_fs* dest, for_fs* src1, for_fs* src2, for_fs* src3, fl
 
 
 //=====================================================================
-// äÖÈ¾ÊµÏÖ
+// ï¿½ï¿½È¾Êµï¿½ï¿½
 //=====================================================================
 
-// »æÖÆÉ¨ÃèÏß
+// ï¿½ï¿½ï¿½ï¿½É¨ï¿½ï¿½ï¿½ï¿½
 void device_draw_scanline(device_t* device, scanline_t* scanline, s_vector& point1, s_vector& point2, s_vector& point3, for_fs* ffs, int count)
 {
 	IUINT32* framebuffer = device->framebuffer[scanline->y];
@@ -718,7 +715,7 @@ void device_draw_scanline(device_t* device, scanline_t* scanline, s_vector& poin
 		if (x >= width) break;
 	}
 }
-//Ö÷äÖÈ¾º¯Êı 
+//ï¿½ï¿½ï¿½ï¿½È¾ï¿½ï¿½ï¿½ï¿½ 
 void device_render_trap(device_t* device, trapezoid_t* trap, s_vector& point1, s_vector& point2, s_vector& point3, for_fs* ffs, int count)
 {
 	scanline_t scanline;
@@ -736,7 +733,7 @@ void device_render_trap(device_t* device, trapezoid_t* trap, s_vector& point1, s
 		if (j >= device->height) break;
 	}
 }
-// ¸ù¾İ render_state »æÖÆÔ­Ê¼Èı½ÇĞÎ
+// ï¿½ï¿½ï¿½ï¿½ render_state ï¿½ï¿½ï¿½ï¿½Ô­Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void device_draw_primitive(device_t* device, vertex_t* v1,
 	vertex_t* v2, vertex_t* v3, int count)
 {
@@ -744,23 +741,23 @@ void device_draw_primitive(device_t* device, vertex_t* v1,
 	s_vector points[3];
 	/*s_vector p1, p2, p3, c1, c2, c3;
 	int render_state = device->render_state;
-	// °´ÕÕ Transform ±ä»¯
+	// ï¿½ï¿½ï¿½ï¿½ Transform ï¿½ä»¯
 	device->transform.apply(c1, v1->pos);
 	device->transform.apply(c2, v2->pos);
 	device->transform.apply(c3, v3->pos);
-	// ²Ã¼ô£¬×¢Òâ´Ë´¦¿ÉÒÔÍêÉÆÎª¾ßÌåÅĞ¶Ï¼¸¸öµãÔÚ cvvÄÚÒÔ¼°Í¬cvvÏà½»Æ½ÃæµÄ×ø±ê±ÈÀı
-// ½øĞĞ½øÒ»²½¾«Ï¸²Ã¼ô£¬½«Ò»¸ö·Ö½âÎª¼¸¸öÍêÈ«´¦ÔÚ cvvÄÚµÄÈı½ÇĞÎ
-//µÈÓÚ0±íÊ¾ÍêÈ«ÔÚcvvÀïÃæ(ÎÒµÄÀí½â
+	// ï¿½Ã¼ï¿½ï¿½ï¿½×¢ï¿½ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Ğ¶Ï¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ cvvï¿½ï¿½ï¿½Ô¼ï¿½Í¬cvvï¿½à½»Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½Ğ½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ cvvï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½Ê¾ï¿½ï¿½È«ï¿½ï¿½cvvï¿½ï¿½ï¿½ï¿½(ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½
 	if (transform_check_cvv(c1) != 0) return;
 	if (transform_check_cvv(c2) != 0) return;
 	if (transform_check_cvv(c3) != 0) return;
-	//¹éÒ»»¯£¬µÃµ½ÆÁÄ»×ø±ê
+	//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½
 	device->transform.homogenize(p1, c1);
 	device->transform.homogenize(p2, c2);
 	device->transform.homogenize(p3, c3);
 	*/
 
-	//Äæ×ªÖÃ
+	//ï¿½ï¿½×ªï¿½ï¿½
 	s_matrix tmp;
 	tmp = device->transform.world;
 	tmp.inverse(); tmp.transpose();
@@ -773,7 +770,7 @@ void device_draw_primitive(device_t* device, vertex_t* v1,
 		vertex_t* vertex = vertexs[i];
 		for_vs* av = &vvs[i];
 		apply_to_vector(vertex->pos, vertex->pos, device->transform.world);
-		av->pos = vertex->pos;//ÊÀ½ç¿Õ¼äµÄpos
+		av->pos = vertex->pos;//ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½pos
 		int a = 0, b = 0;
 		if (i == 0) a = 1, b = 2;
 		else if (i == 1) a = 0, b = 2;
@@ -790,18 +787,18 @@ void device_draw_primitive(device_t* device, vertex_t* v1,
 		if (i == 1) c2 = vertex->pos;
 		if (i == 2) c3 = vertex->pos;
 
-		apply_to_vector(vertex->normal, vertex->normal, tmp); // ·¨ÏòÁ¿³ËÕı¹æ¾ØÕó
+		apply_to_vector(vertex->normal, vertex->normal, tmp); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		vertex->normal.normalize();
 
 
 
 
 
-		av->normal = vertex->normal; // ÊÀ½ç¿Õ¼äµÄnormal
+		av->normal = vertex->normal; // ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½normal
 		av->color = vertex->color;
 		av->texcoord = vertex->tc;
 
-		v_shader(device, av, &ffs[i]); // ¶¥µã×ÅÉ«Æ÷
+		v_shader(device, av, &ffs[i]); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½
 		transform_homogenize(vertex->pos, vertex->pos, device->width, device->height);
 
 	}
@@ -812,11 +809,11 @@ void device_draw_primitive(device_t* device, vertex_t* v1,
 
 		float crossdot = t1_t2.x * t2_t3.y - t2_t3.x * t1_t2.y;
 		if (device->is_cull == 1)
-		{ //ÄæÊ±ÕëÖ»ÒªÕıÃæ
+		{ //ï¿½ï¿½Ê±ï¿½ï¿½Ö»Òªï¿½ï¿½ï¿½ï¿½
 			if (crossdot <= 0.0f) return;
 		}
 		else if (device->is_cull == 2)
-		{  //Ë³Ê±ÕëÖ»Òª±³Ãæ
+		{  //Ë³Ê±ï¿½ï¿½Ö»Òªï¿½ï¿½ï¿½ï¿½
 			if (crossdot > 0.0f) return;
 		}
 	}
@@ -832,9 +829,9 @@ void device_draw_primitive(device_t* device, vertex_t* v1,
 		v1->pos.w = c1.w;
 		v2->pos.w = c2.w;
 		v3->pos.w = c3.w;
-		vertex_rhw_init(v1); //³õÊ¼»¯w
-		vertex_rhw_init(v2); //³õÊ¼»¯w 
-		vertex_rhw_init(v3); //³õÊ¼»¯w 
+		vertex_rhw_init(v1); //ï¿½ï¿½Ê¼ï¿½ï¿½w
+		vertex_rhw_init(v2); //ï¿½ï¿½Ê¼ï¿½ï¿½w 
+		vertex_rhw_init(v3); //ï¿½ï¿½Ê¼ï¿½ï¿½w 
 		int n = trapezoid_init_triangle(traps, v1, v2, v3);
 		point1.w = c1.w;
 		point2.w = c2.w;
@@ -843,7 +840,7 @@ void device_draw_primitive(device_t* device, vertex_t* v1,
 		if (n >= 2) { device_render_trap(device, &traps[1], point1, point2, point3, ffs, count); }
 	}
 
-	if ((render_state & RENDER_STATE_WIREFRAME) && device->framebuffer != NULL)//Ïß¿ò»æÖÆ 
+	if ((render_state & RENDER_STATE_WIREFRAME) && device->framebuffer != NULL)//ï¿½ß¿ï¿½ï¿½ï¿½ï¿½ 
 	{
 		device_draw_line(device, (int)v1->pos.x, (int)v1->pos.y, (int)v2->pos.x, (int)v2->pos.y, device->foreground);
 		device_draw_line(device, (int)v1->pos.x, (int)v1->pos.y, (int)v3->pos.x, (int)v3->pos.y, device->foreground);
@@ -870,7 +867,7 @@ void v_shader(device_t* device, for_vs* vv, for_fs* ff)
 }
 
 
-//ÕıÌ¬·Ö²¼º¯ÊıD
+//ï¿½ï¿½Ì¬ï¿½Ö²ï¿½ï¿½ï¿½ï¿½ï¿½D
 float DistributionGGX(s_vector& N, s_vector& H, float roughness)
 {
 	float a = roughness * roughness;
@@ -884,7 +881,7 @@ float DistributionGGX(s_vector& N, s_vector& H, float roughness)
 
 	return nom / denom;
 }
-//¼¸ºÎº¯ÊıG
+//ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½G
 float GeometrySchlickGGX(float NdotV, float roughness)
 {
 	float r = (roughness + 1.0);
@@ -940,7 +937,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 			float u = ff->texcoord.u; float v = ff->texcoord.v;
 			//albedo
 			s_vector albedo; read_the_texture(albedo, &device->tPBR[count].albedo_texture, u, v);
-			//gamma ½ÃÕı
+			//gamma ï¿½ï¿½ï¿½ï¿½
 			float a_xx = albedo.x; float a_yy = albedo.y; float a_zz = albedo.z;
 			a_xx = pow(a_xx, 2.2f); a_yy = pow(a_yy, 2.2f); a_zz = pow(a_zz, 2.2f);
 			albedo.reset(a_xx, a_yy, a_zz, albedo.w);
@@ -1055,13 +1052,13 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		lightcolor = device->pointlight[0].lightcolor;
 		lightpos = device->pointlight[0].lightpos;
 		s_vector objectcolor(ff->color.r, ff->color.g, ff->color.b, ff->color.a);
-		//»·¾³¹âÕÕ ambient
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ambient
 		float ambientStrength = device->m1;
 		s_vector ambient;
 		ambient = lightcolor;
 		ambient.float_dot(ambientStrength);
 
-		//Âş·´Éä¹âÕÕ diffuse
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ diffuse
 		s_vector norm = ff->normal;
 		s_vector fragpos = ff->pos;
 		s_vector lightDir; lightDir.minus_two(lightpos, fragpos); lightDir.normalize();
@@ -1070,7 +1067,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		//if (diff > 0.0f) { printf("%lf\n", diff); norm.show(); }
 		s_vector diffuse; diffuse = lightcolor; diffuse.float_dot(diff);
 
-		//specular ¾µÃæ¸ß¹â
+		//specular ï¿½ï¿½ï¿½ï¿½ß¹ï¿½
 		float specularstrength = device->m2;
 		//get the view pos
 		s_vector viewpos = device->camera.viewpos;
@@ -1133,7 +1130,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector light_specular; light_specular = device->pointlight[0].specular;
 		lightpos = device->pointlight[0].lightpos;
 		s_vector objectcolor(ff->color.r, ff->color.g, ff->color.b, ff->color.a);
-		//»·¾³¹âÕÕ ambient
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ambient
 
 		//float r, g, b, a; a = 1.0f;
 		//device_texture_read_from_material(device, u, v, r, g, b, a);
@@ -1145,7 +1142,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector ambient;                ambient.dot_two(light_ambient, material_ambient);
 		//ambient.show();
 
-		//Âş·´Éä¹âÕÕ diffuse
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ diffuse
 		s_vector norm = ff->normal;
 		s_vector fragpos = ff->pos;
 		s_vector lightDir; lightDir.minus_two(lightpos, fragpos); lightDir.normalize();
@@ -1155,7 +1152,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector material_diffuse; material_diffuse = material_ambient;
 		s_vector diffuse; diffuse = light_diffuse; diffuse.float_dot(diff); diffuse.dot_two(diffuse, material_diffuse);
 
-		//specular ¾µÃæ¸ß¹â
+		//specular ï¿½ï¿½ï¿½ï¿½ß¹ï¿½
 		float material_shininess; material_shininess = device->material[count].shininess;
 		//get the view pos
 		s_vector viewpos = device->camera.viewpos;
@@ -1219,7 +1216,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector light_specular; light_specular = device->pointlight[0].specular;
 		lightpos = device->pointlight[0].lightpos;
 		s_vector objectcolor(ff->color.r, ff->color.g, ff->color.b, ff->color.a);
-		//»·¾³¹âÕÕ ambient
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ambient
 
 		//float r, g, b, a; a = 1.0f;
 		//device_texture_read_from_material(device, u, v, r, g, b, a);
@@ -1231,7 +1228,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector ambient;                ambient.dot_two(light_ambient, material_ambient);
 		//ambient.show();
 
-		//Âş·´Éä¹âÕÕ diffuse
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ diffuse
 		s_vector norm = ff->normal;
 		s_vector fragpos = ff->pos;
 		s_vector lightDir; lightDir.minus_two(lightpos, fragpos); lightDir.normalize();
@@ -1241,7 +1238,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector material_diffuse; material_diffuse = material_ambient;
 		s_vector diffuse; diffuse = light_diffuse; diffuse.float_dot(diff); diffuse.dot_two(diffuse, material_diffuse);
 
-		//specular ¾µÃæ¸ß¹â
+		//specular ï¿½ï¿½ï¿½ï¿½ß¹ï¿½
 		float material_shininess; material_shininess = device->material[count].shininess;
 		//get the view pos
 		s_vector viewpos = device->camera.viewpos;
@@ -1306,7 +1303,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector light_specular; light_specular = device->pointlight[0].specular;
 		lightpos = device->pointlight[0].lightpos;
 		s_vector objectcolor(ff->color.r, ff->color.g, ff->color.b, ff->color.a);
-		//»·¾³¹âÕÕ ambient
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ambient
 
 		//float r, g, b, a; a = 1.0f;
 		//device_texture_read_from_material(device, u, v, r, g, b, a);
@@ -1331,7 +1328,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector ambient;                ambient.dot_two(light_ambient, material_ambient);
 		//ambient.show();
 
-		//Âş·´Éä¹âÕÕ diffuse
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ diffuse
 		s_vector norm = ff->normal;
 		s_vector fragpos = ff->pos;
 		s_vector lightDir; lightDir.minus_two(lightpos, fragpos); lightDir.normalize();
@@ -1341,7 +1338,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector material_diffuse; material_diffuse = material_ambient;
 		s_vector diffuse; diffuse = light_diffuse; diffuse.float_dot(diff); diffuse.dot_two(diffuse, material_diffuse);
 
-		//specular ¾µÃæ¸ß¹â
+		//specular ï¿½ï¿½ï¿½ï¿½ß¹ï¿½
 		float material_shininess; material_shininess = device->material[count].shininess;
 		//get the view pos
 		s_vector viewpos = device->camera.viewpos;
@@ -1410,7 +1407,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		*/
 
 		s_vector objectcolor(ff->color.r, ff->color.g, ff->color.b, ff->color.a);
-		//»·¾³¹âÕÕ ambient
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ambient
 
 		//float r, g, b, a; a = 1.0f;
 		//device_texture_read_from_material(device, u, v, r, g, b, a);
@@ -1435,7 +1432,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector ambient;                ambient.dot_two(light_ambient, material_ambient);
 		//ambient.show();
 
-		//Âş·´Éä¹âÕÕ diffuse
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ diffuse
 		s_vector norm;       // = ff->normal
 		if (device->material[count].have_normal == 1)
 		{
@@ -1465,7 +1462,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		s_vector material_diffuse; material_diffuse = material_ambient;
 		s_vector diffuse; diffuse = light_diffuse; diffuse.float_dot(diff); diffuse.dot_two(diffuse, material_diffuse);
 
-		//specular ¾µÃæ¸ß¹â
+		//specular ï¿½ï¿½ï¿½ï¿½ß¹ï¿½
 		float material_shininess; material_shininess = device->material[count].shininess;
 		//get the view pos
 		s_vector viewpos = device->camera.viewpos;
@@ -1491,7 +1488,7 @@ void f_shader(device_t* device, for_fs* ff, s_color& color, int count, bool& is_
 		//result.dot_two(result, objectcolor);
 		//result.show();
 
-		//gamma ½ÃÕı
+		//gamma ï¿½ï¿½ï¿½ï¿½
 		/*float gamma = 2.2;
 
 		float xx = result.x; float yy = result.y; float zz = result.z;
@@ -1732,7 +1729,7 @@ void init_texture_by_photo(device_t* device, char const* path)
 
 
 void init_texture_by_diffuse(device_t* device, char const* path, int count)
-{  //ÉèÖÃÂş·´ÉäÌùÍ¼
+{  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
 	int width, height, nrChannels;
 	unsigned char* data = stbi_load(path, &width, &height, &nrChannels, 0);
 	//stbi_image_free(data);
@@ -1776,7 +1773,7 @@ void init_texture_by_diffuse(device_t* device, char const* path, int count)
 }
 
 void init_texture_by_specular(device_t* device, char const* path, int count)
-{  //ÉèÖÃ¾µÃæ¸ß¹âÌùÍ¼
+{  //ï¿½ï¿½ï¿½Ã¾ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï¿½Í¼
 	int width, height, nrChannels;
 	unsigned char* data = stbi_load(path, &width, &height, &nrChannels, 0);
 	//stbi_image_free(data);
@@ -1821,7 +1818,7 @@ void init_texture_by_specular(device_t* device, char const* path, int count)
 
 void init_texture_by_normal(device_t* device, char const* path, int count)
 {
-	//ÉèÖÃ·¨ÏòÁ¿ÌùÍ¼
+	//ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
 	int width, height, nrChannels;
 	unsigned char* data = stbi_load(path, &width, &height, &nrChannels, 0);
 	//stbi_image_free(data);
@@ -1866,7 +1863,7 @@ void init_texture_by_normal(device_t* device, char const* path, int count)
 
 void init_texture_by_albedo(device_t* device, char const* path, int count)
 {
-	//ÉèÖÃalbedoÌùÍ¼ ·´ÕÕÂÊ
+	//ï¿½ï¿½ï¿½ï¿½albedoï¿½ï¿½Í¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int width, height, nrChannels;
 	unsigned char* data = stbi_load(path, &width, &height, &nrChannels, 0);
 	//stbi_image_free(data);
@@ -1910,7 +1907,7 @@ void init_texture_by_albedo(device_t* device, char const* path, int count)
 
 void init_texture_by_metallic(device_t* device, char const* path, int count)
 {
-	//ÉèÖÃmetallicÌùÍ¼ ½ğÊô¶È
+	//ï¿½ï¿½ï¿½ï¿½metallicï¿½ï¿½Í¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int width, height, nrChannels;
 	unsigned char* data = stbi_load(path, &width, &height, &nrChannels, 0);
 	//stbi_image_free(data);
@@ -1954,7 +1951,7 @@ void init_texture_by_metallic(device_t* device, char const* path, int count)
 
 void init_texture_by_roughness(device_t* device, char const* path, int count)
 {
-	//ÉèÖÃroughnessÌùÍ¼ ´Ö²Ú¶È
+	//ï¿½ï¿½ï¿½ï¿½roughnessï¿½ï¿½Í¼ ï¿½Ö²Ú¶ï¿½
 	int width, height, nrChannels;
 	unsigned char* data = stbi_load(path, &width, &height, &nrChannels, 0);
 	//stbi_image_free(data);
@@ -1998,7 +1995,7 @@ void init_texture_by_roughness(device_t* device, char const* path, int count)
 
 void init_texture_by_ao(device_t* device, char const* path, int count)
 {
-	//ÉèÖÃaoÌùÍ¼ »·¾³¹âÕÚ±Î
+	//ï¿½ï¿½ï¿½ï¿½aoï¿½ï¿½Í¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú±ï¿½
 	int width, height, nrChannels;
 	unsigned char* data = stbi_load(path, &width, &height, &nrChannels, 0);
 	//stbi_image_free(data);
@@ -2042,11 +2039,11 @@ void init_texture_by_ao(device_t* device, char const* path, int count)
 
 bool load_obj(std::vector<vertex_t>& tot_vertex, device_t* device, const char* obj_path, const char* pre_mtl_path, int start, bool filp_y)
 {
-	tinyobj::attrib_t attrib; // ËùÓĞµÄÊı¾İ·ÅÔÚÕâÀï
+	tinyobj::attrib_t attrib; // ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½ï¿½İ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	std::vector<tinyobj::shape_t> shapes;
-	// Ò»¸öshape,±íÊ¾Ò»¸ö²¿·Ö,
-	// ÆäÖĞÖ÷Òª´æµÄÊÇË÷Òı×ø±ê mesh_tÀà,
-	// ·ÅÔÚindicesÖĞ
+	// Ò»ï¿½ï¿½shape,ï¿½ï¿½Ê¾Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ mesh_tï¿½ï¿½,
+	// ï¿½ï¿½ï¿½ï¿½indicesï¿½ï¿½
 	/*
 	// -1 means not used.
 	typedef struct {
@@ -2087,7 +2084,7 @@ bool load_obj(std::vector<vertex_t>& tot_vertex, device_t* device, const char* o
 		std::cout << "# of materials : " << materials.size() << std::endl;
 	*/
 	int cnt = 0;
-	//1.»ñÈ¡¸÷ÖÖ²ÄÖÊºÍÎÆÀí
+	//1.ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ö²ï¿½ï¿½Êºï¿½ï¿½ï¿½ï¿½ï¿½
 	for (int i = 0; i < materials.size(); i++)
 	{
 		v_material m;
@@ -2154,13 +2151,13 @@ bool load_obj(std::vector<vertex_t>& tot_vertex, device_t* device, const char* o
 
 
 
-	// For each shape ±éÀúÃ¿Ò»¸ö²¿·Ö
+	// For each shape ï¿½ï¿½ï¿½ï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (size_t i = 0; i < shapes.size(); i++)
 	{
-		// Õâ²¿·ÖµÄÃû³Æ
+		// ï¿½â²¿ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½
 		//printf("shape[%ld].name = %s\n", static_cast<long>(i),
 		//	shapes[i].name.c_str());
-		// Íø¸ñµÄµãÊı
+		// ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½
 	//	printf("Size of shape[%ld].mesh.indices: %lu\n", static_cast<long>(i),
 	//		static_cast<unsigned long>(shapes[i].mesh.indices.size()));
 		//printf("Size of shape[%ld].path.indices: %lu\n", static_cast<long>(i),static_cast<unsigned long>(shapes[i].path.indices.size()));
@@ -2184,7 +2181,7 @@ bool load_obj(std::vector<vertex_t>& tot_vertex, device_t* device, const char* o
 			// if(fnum!=3) {std::cout<<"here!\n";}
 			int m_index = shapes[i].mesh.material_ids[f];
 			//if(m_index==0) {std::cout<<"here!\n";}
-		   // »ñµÃËùË÷ÒıÏÂ±ê
+		   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½
 			tinyobj::index_t idx;
 			int vertex_index[3];
 			int normal_index[3];
@@ -2233,7 +2230,7 @@ bool load_obj(std::vector<vertex_t>& tot_vertex, device_t* device, const char* o
 				cnt++;
 			}
 
-			// Æ«ÒÆ
+			// Æ«ï¿½ï¿½
 			index_offset += fnum;
 		}
 
